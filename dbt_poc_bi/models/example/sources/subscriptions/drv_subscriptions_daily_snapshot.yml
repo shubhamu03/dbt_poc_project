@@ -1,0 +1,160 @@
+version: 2
+
+sources:
+  - name: subscriptions
+    database: |
+      {%- if  target.name == "prod" -%}  bolt_dcp_brd_prod
+      {%- elif target.name == "stage" -%}  bolt_dcp_brd_stage
+      {%- elif target.name == "int" -%} bolt_dcp_brd_int
+      {%- elif target.name == "local" -%} bolt_automated_tests_dev
+      {%- else -%} bolt_dcp_brd_dev
+      {%- endif -%}
+    schema: |
+      {%- if  target.name == "local" -%} dbt_supadhyay
+      {%- else -%} gold
+      {%- endif -%}
+    tables:
+      - name: drv_subscriptions_daily_snapshot
+        description: >
+          to describe - drv_subscriptions_daily_snapshot
+        columns:
+          - name: primary_key
+            description: '<primary_key>'
+          - name: report_date
+            description: '<report_date>'
+          - name: user_id
+            description: '<user_id>'
+          - name: global_subscription_id
+            description: '<global_subscription_id>'
+          - name: market
+            description: '<market>'
+          - name: realm
+            description: '<realm>'
+          - name: subscription_status
+            description: '<subscription_status>'
+          - name: subs_purchase_type
+            description: '<subs_purchase_type>'
+          - name: currency_code
+            description: '<currency_code>'
+          - name: subs_payment_type
+            description: '<subs_payment_type>'
+          - name: payment_provider
+            description: '<payment_provider>'
+          - name: subscription_type
+            description: '<subscription_type>'
+          - name: affiliate
+            description: '<affiliate>'
+          - name: ad_tier
+            description: '<ad_tier>'
+          - name: sku
+            description: '<sku>'
+          - name: subscription_payment_period_type
+            description: '<subscription_payment_period_type>'
+          - name: campaign_id
+            description: '<campaign_id>'
+          - name: campaign_name
+            description: '<campaign_name>'
+          - name: price_plan_id
+            description: '<price_plan_id>'
+          - name: has_started_with_free_trial
+            description: '<has_started_with_free_trial>'
+          - name: free_trial_ind
+            description: '<free_trial_ind>'
+          - name: price
+            description: '<price>'
+          - name: trial_to_paid
+            description: '<trial_to_paid>'
+          - name: subs_in_grace_period
+            description: '<subs_in_grace_period>'
+          - name: subs_seq_no
+            description: '<subs_seq_no>'
+          - name: subscription_start_ts
+            description: '<subscription_start_ts>'
+          - name: subscription_end_ts
+            description: '<subscription_end_ts>'
+          - name: subscription_event_ts
+            description: '<subscription_event_ts>'
+          - name: subs_cancelation_timestamp
+            description: '<subs_cancelation_timestamp>'
+          - name: subs_terminations_timestamp
+            description: '<subs_terminations_timestamp>'
+          - name: subs_termination_code
+            description: '<subs_termination_code>'
+          - name: yday_subscription_status
+            description: '<yday_subscription_status>'
+          - name: subs_valid_ind
+            description: '<subs_valid_ind>'
+          - name: is_cancelled
+            description: '<is_cancelled>'
+          - name: is_terminated
+            description: '<is_terminated>'
+          - name: product_name
+            description: '<product_name>'
+          - name: provider_type
+            description: '<provider_type>'
+          - name: provider
+            description: '<provider>'
+          - name: received_ts
+            description: '<received_ts>'
+          - name: transaction_id
+            description: '<transaction_id>'
+          - name: first_successful_transaction_id
+            description: '<first_successful_transaction_id>'
+          - name: migration_type
+            description: '<migration_type>'
+          - name: country_code
+            description: '<country_code>'
+          - name: territory
+            description: '<territory>'
+          - name: region
+            description: '<region>'
+          - name: subscription_term
+            description: '<subscription_term>'
+          - name: direct_to_paid
+            description: '<direct_to_paid>'
+          - name: redemption_code
+            description: '<redemption_code>'
+          - name: local_time_zone
+            description: '<local_time_zone>'
+          - name: tier_type
+            description: '<tier_type>'
+          - name: on_grace_period
+            description: '<on_grace_period>'
+          - name: gap_from_prev_subscription
+            description: '<gap_from_prev_subscription>'
+          - name: prev_valid_subs_end_ts
+            description: '<prev_valid_subs_end_ts>'
+          - name: gap_to_next_subscription
+            description: '<gap_to_next_subscription>'
+          - name: next_valid_subs_start_ts
+            description: '<next_valid_subs_start_ts>'
+          - name: subs_paid_ind
+            description: '<subs_paid_ind>'
+          - name: closing_active_ind
+            description: '<closing_active_ind>'
+          - name: canceled_ind
+            description: '<canceled_ind>'
+          - name: new_acquisition_ind
+            description: '<new_acquisition_ind>'
+          - name: winback_ind
+            description: '<winback_ind>'
+          - name: gross_add_ind
+            description: '<gross_add_ind>'
+          - name: paused_ind
+            description: '<paused_ind>'
+          - name: closing_paused_ind
+            description: '<closing_paused_ind>'
+          - name: resumed_ind
+            description: '<resumed_ind>'
+          - name: churn_ind
+            description: '<churn_ind>'
+          - name: ended_intraday_transfer_ind
+            description: '<ended_intraday_transfer_ind>'
+          - name: intraday_transfer_ind
+            description: '<intraday_transfer_ind>'
+          - name: dbt_ts_utc
+            #description: '{{ doc("dbt_ts_utc") }}'
+          - name: dbt_hour
+            #description: '{{ doc("dbt_hour") }}'
+          - name: dbt_invocation_id
+            #description: '{{ doc("dbt_invocation_id") }}'

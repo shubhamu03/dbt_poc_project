@@ -1,0 +1,82 @@
+config:
+  send_anonymous_usage_stats: false
+  use_colors: true
+dbt_poc_bi:
+  outputs:
+    local:
+      catalog: bolt_automated_tests_dev
+      #schema: "{{ env_var('DBT_DEVELOPER_SCHEMA') }}"
+      schema: dbt_supadhyay
+      host: wbd-dcp-dca-dev.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/66e9630df695af4e
+      threads: 8
+      #token: "{{ env_var('DBT_PERSONAL_DEV_TOKEN') }}"
+      token: dapid77f3cb5fa1b265b16b5bc81e968776d
+      type: databricks
+      debug: true
+      use_colors: true
+      printer_width: 120
+      write_json: true
+      retry_all: true
+      connect_timeout: 5
+      connect_retries: 2
+      connection_parameters:
+        _socket_timeout: 60
+    dev:
+      catalog: bolt_dcp_brd_dev
+      schema: gold
+      host: wbd-dcp-dca-dev.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/66e9630df695af4e
+      threads: 8
+      token: dapid77f3cb5fa1b265b16b5bc81e968776d
+      type: databricks
+      debug: true
+      use_colors: true
+      printer_width: 120
+      write_json: true
+      retry_all: true
+      connect_timeout: 5
+      connect_retries: 2
+      connection_parameters:
+        _socket_timeout: 60
+    int:
+      catalog: bolt_dcp_brd_int
+      schema: gold
+      host: wbd-dcp-dca-int.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/63627bcbab224f32
+      threads: 12
+      token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+      type: databricks
+      debug: true
+      use_colors: true
+      printer_width: 120
+      write_json: true
+      connection_parameters:
+        _socket_timeout: 60
+    stage:
+      catalog: bolt_dcp_brd_stage
+      host: wbd-dcp-dca-stg.cloud.databricks.com
+      schema: gold
+      http_path: /sql/1.0/warehouses/1964fa5c72e8394f
+      threads: 8
+      token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+      type: databricks
+      debug: true
+      use_colors: true
+      printer_width: 120
+      write_json: true
+      connection_parameters:
+        _socket_timeout: 60
+    prod:
+      catalog: bolt_dcp_brd_prod
+      schema: gold
+      host: wbd-dcp-dca-prd.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/4a17ddcfe878439f
+      threads: 16
+      token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+      type: databricks
+      printer_width: 120
+      write_json: true
+      connection_parameters:
+        _socket_timeout: 60
+  target: local

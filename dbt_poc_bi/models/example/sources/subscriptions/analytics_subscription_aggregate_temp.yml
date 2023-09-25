@@ -1,0 +1,100 @@
+version: 2
+
+sources:
+  - name: subscriptions
+    database: |
+      {%- if  target.name == "prod" -%} bolt_automated_tests_dev
+      {%- elif target.name == "stage" -%} bolt_automated_tests_dev
+      {%- elif target.name == "int" -%} bolt_automated_tests_dev
+      {%- elif target.name == "local" -%} bolt_automated_tests_dev
+      {%- else -%} bolt_automated_tests_dev
+      {%- endif -%}
+    schema: |
+      {%- if  target.name == "local" -%} dbt_supadhyay
+      {%- else -%} gold
+      {%- endif -%}
+    tables:
+      - name: analytics_subscription_aggregates_temp
+        description: >
+          to describe - analytics_subscription_aggregates_temp
+        columns:
+        - name: unique_key
+          description: unique_key
+        - name: grain
+          description: grain
+        - name: report_date
+          description: report_date
+        - name: payment_provider
+          description: payment_provider
+        - name: tier_type
+          description: tier_type
+        - name: affiliate
+          description: affiliate
+        - name: paid
+          description: paid
+        - name: subs_started_free_trial
+          description: subs_started_free_trial
+        - name: ad_tier
+          description: ad_tier
+        - name: source
+          description: source
+        - name: provider_type
+          description: provider_type
+        - name: migration_type
+          description: migration_type
+        - name: market
+          description: market
+        - name: realm
+          description: realm
+        - name: payment_period
+          description: payment_period
+        - name: campaign
+          description: campaign
+        - name: region
+          description: region
+        - name: territory
+          description: territory
+        - name: product_name
+          description: product_name
+        - name: subs_purchase_type
+          description: subs_purchase_type
+        - name: closing_active_subs
+          description: closing_active_subs
+        - name: gross_adds
+          description: gross_adds
+        - name: transfers_in
+          description: transfers_in
+        - name: new_sale
+          description: new_sale
+        - name: winback
+          description: winback
+        - name: cancelled_subs
+          description: cancelled_subs
+        - name: intraday_transfers
+          description: intraday_transfers
+        - name: ended_intraday_transfers
+          description: ended_intraday_transfers
+        - name: new_churn
+          description: new_churn
+        - name: voluntary_churn
+          description: voluntary_churn
+        - name: involuntary_churn
+          description: involuntary_churn
+        - name: new_paused
+          description: new_paused
+        - name: new_resumed
+          description: new_resumed
+        - name: closing_paused_subs
+          description: closing_paused_subs
+        - name: subs_in_grace_period
+          description: subs_in_grace_period
+        - name: gross_adds_prev
+          description: gross_adds_prev
+        - name: closing_active_subs_prev
+          description: closing_active_subs_prev
+        - name: dbt_ts_utc
+          #description: '{{ doc("dbt_ts_utc") }}'
+        - name: dbt_hour
+          #description: '{{ doc("dbt_hour") }}'
+        - name: dbt_invocation_id
+          #description: '{{ doc("dbt_invocation_id") }}'

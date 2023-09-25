@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  - name: incremental_filter
+    description: '{{ doc("macro_incremental_filter") }}'
+    arguments:
+    - name: timestamp_column_name
+      type: string
+      description: "(default: 'receivedTimestamp'): The name of the timestamp column to filter by."
+    - name: interval
+      type: string
+      description: "(default: 'hour'): The interval for the filter, should be one of the following: 'hour', 'day', 'week', or 'month'."
